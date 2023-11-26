@@ -1,5 +1,5 @@
 from PIL import Image
-from Filters1 import *
+from filters import *
 import os
 
 
@@ -17,6 +17,7 @@ def apply_filter(image, filter_choice):
         3: BlueFilter,
         4: InversionFilter,
         5: ContrastFilter,
+        6: MultiFilter,
     }
 
     if filter_choice in filters:
@@ -48,10 +49,11 @@ def main():
         print("3: Синий фильтр")
         print("4: Инверсия")
         print("5: Увеличения контрастности")
+        print('6: МультиФильтр')
         print("0: Выход")
 
         filter_choice = input("Выберите фильтр (или 0 для выхода): ")
-        while not (filter_choice.isdigit() and 0 <= int(filter_choice) <= 5):
+        while not (filter_choice.isdigit() and 0 <= int(filter_choice) <= 6):
             print("Некорректный ввод!")
             filter_choice = input("Выберите фильтр (или 0 для выхода): ")
         filter_choice = int(filter_choice)
@@ -71,8 +73,7 @@ def main():
 
         if answer == "да":
             save_path = input("Куда сохранить: ")
-            while not os.save_path.exists(save_path):
-                save_path = input("Файл не найден. Попробуйте еще раз: ")
+            Filter.saving(save_path)
             save_image(filtered_image, save_path)
 
         answer_next = input("Ещё раз? (Да/Нет): ").lower()
